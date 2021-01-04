@@ -17,12 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MetalVerse", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("MetalReveries", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
                     <li>@Html.ActionLink("Bands", "Index", "Bands")</li>
+                    <li>@Html.ActionLink("Genres", "Index", "Genres")</li>
                     <li>@Html.ActionLink("Customers", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "AllBands";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bands</h2>
+
+<div class="form-group">
+    @Html.ActionLink("NEW BAND", "New", "Bands", null, new { @class = "btn btn-primary" })
+</div>
+
+<table id="bands" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Band</th>
+            <th>Country</th>
+            <th>Year Founded</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#bands").DataTable({
+                ajax: {
+                    url: "/api/bands",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, band) {
+                            return "<a href='/bands/edit/" + band.id + "'>" + band.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "country"
+                    },
+                    {
+                        data: "yearFounded"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, band) {
+                            return "<button class='btn-link js-delete' data-band-id=" + data + " data-band-count=" + band.nrAlbumsOnSite + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#bands").on("click", ".js-delete", function () {
+                var button = $(this);
+                if (button.attr("data-band-count") != "0") {
+                    bootbox.alert("Only bands with no albums on the site can be deleted!");
+                }
+                else {
+                    bootbox.confirm("Are you sure you want to delete this band?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/bands/" + button.attr("data-band-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        })
+    </script>
+}

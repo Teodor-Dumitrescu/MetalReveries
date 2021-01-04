@@ -14,6 +14,7 @@ namespace MetalReveries.Models
         [StringLength(255)]
         public string Name { get; set; }
 
+        [Display(Name = "Number of albums")]
         public int AlbumCount { get; set; }
 
     }

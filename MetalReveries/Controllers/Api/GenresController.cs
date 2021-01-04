@@ -64,7 +64,9 @@ namespace MetalReveries.Controllers.Api
             if (oldGenre == null)
                 return NotFound();
 
-            oldGenre = genre;
+            // oldGenre.Id = genre.Id;
+            oldGenre.Name = genre.Name;
+            // oldGenre.AlbumCount = genre.AlbumCount;
 
             _context.SaveChanges();
 

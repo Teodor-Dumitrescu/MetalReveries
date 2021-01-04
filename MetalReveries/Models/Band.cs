@@ -14,7 +14,9 @@ namespace MetalReveries.Models
 
         public string Country { get; set; }
 
-        [Range(1900, 2020)]
-        public int FoundedYear { get; set; }
+        [Range(1900, 2021)]
+        public int YearFounded { get; set; }
+
+        public int NrAlbumsOnSite { get; set; }
     }
 }
