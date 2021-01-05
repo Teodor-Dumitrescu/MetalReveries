@@ -16,12 +16,14 @@ namespace MetalReveries.Models
 
         public int BandId { set; get; }
 
+        public Band Band { set; get; }
+
         [Display(Name = "Release Date")]
         public DateTime ReleaseDate { set; get; }
 
         [Range(0, 1000)]
         [Display(Name = "Number in Stock")]
-        public byte NumberInStock { set; get; }
+        public int NumberInStock { set; get; }
 
         [Display(Name = "Genre")]
         [Required]
@@ -29,5 +31,6 @@ namespace MetalReveries.Models
 
         public Genre Genre { set; get; }
 
+        public float Price { set; get; }
     }
 }

@@ -117,3 +117,5 @@ C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\bin\System.Web.Http.
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddGenresTable.resources
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.csproj.GenerateResource.cache
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedBands.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedAlbums.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.ChangeDataTypeForAlbumsInStock.resources

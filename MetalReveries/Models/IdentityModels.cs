@@ -26,6 +26,8 @@ namespace MetalReveries.Models
 
         public DbSet<Band> Bands { get; set; }
 
+        public DbSet<Album> Albums { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
