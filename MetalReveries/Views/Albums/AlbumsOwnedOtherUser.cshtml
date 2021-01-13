@@ -5,8 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Albums Owned</h2>
-
+<h2>Albums Owned By The User</h2>
+<br />
+<br />
+<input type="hidden" id="customInput" data-value="@ViewBag.UserId"/>
 
 <table id="albums" class="table table-bordered table-hover">
     <thead>
@@ -25,9 +27,10 @@
 {
     <script>
         $(document).ready(function () {
+            var userId = $("#customInput").data("value");
             $("#albums").DataTable({
                 ajax: {
-                    url: "/api/albums/get3/" + ViewBag.UserId,
+                    url: "/api/albums/get3/" + userId,
                     dataSrc: ""
                 },
                 columns: [

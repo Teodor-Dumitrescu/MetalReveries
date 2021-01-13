@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MetalReveries.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
 
 namespace MetalReveries.Controllers
 {
@@ -60,6 +61,54 @@ namespace MetalReveries.Controllers
         public ActionResult AllUsers()
         {
             return View();
+        }
+
+        // POST: /Account/Delete/asdf
+        //[HttpPost, ActionName("Delete")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var user = await UserManager.FindByIdAsync(id);
+                var logins = user.Logins;
+                var rolesForUser = await UserManager.GetRolesAsync(id);
+
+                using (var transaction = _context.Database.BeginTransaction())
+                {
+                    foreach (var login in logins.ToList())
+                    {
+                        await UserManager.RemoveLoginAsync(login.UserId, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
+                    }
+
+                    foreach (var album in user.Albums.ToList())
+                    {
+                        user.Albums.Remove(album);
+                    }
+
+                    if (rolesForUser.Count() > 0)
+                    {
+                        foreach (var item in rolesForUser.ToList())
+                        {
+                            // item should be the name of the role
+                            var result = await UserManager.RemoveFromRoleAsync(user.Id, item);
+                        }
+                    }
+
+                    await UserManager.DeleteAsync(user);
+                    transaction.Commit();
+                }
+
+                return RedirectToAction("AllUsers");
+            }
+            else
+            {
+                return View("AllUsers");
+            }
         }
 
         //

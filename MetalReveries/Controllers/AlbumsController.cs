@@ -33,8 +33,8 @@ namespace MetalReveries.Controllers
                 return View("AllAlbumsNotAuth");
             else
             {
-                //if (User.IsInRole("admin"))
-                  //  return View("AllAlbums");
+                if (User.IsInRole("Admin"))
+                    return View("AllAlbums");
 
                 return View("AllAlbumsUser");
             }

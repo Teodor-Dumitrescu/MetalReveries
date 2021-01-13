@@ -30,40 +30,22 @@
                 },
                 columns: [
                     {
-                        data: "email",
-                        render: function (data, type, user) {
-                            return "<a href='/account/details/" + user.id + "'>" + data + "</a>";
-                        }
+                        data: "email"
                     },
                     {
                         data: "albumsBought",
                         render: function (data, type, user) {
-                            return "<a href='/albums/albumsOwnedOtherUser/" + user.id + "'>" + data + "</a>";
+                            return "<a href='/albums/AlbumsOwnedOtherUser/" + user.id + "'>" + data + "</a>";
+                            //return "<a href='/albums/index'>" + data + "</a>";
                         }
                     },
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn-link js-delete' data-user-id=" + data + ">Delete</button>";
+                            return "<a href='/account/delete/" + data + "'>Delete</a>";
                         }
                     }
                 ]
-            });
-
-            $("#users").on("click", ".js-delete", function () {
-                var button = $(this);
-                //bootbox.alert(button.attr("data-album-id"));
-                bootbox.confirm("Are you sure you want to delete this album?", function (result) {
-                    if (result) {
-                        $.ajax({
-                            url: "/api/albums/" + button.attr("data-album-id"),
-                            method: "DELETE",
-                            success: function () {
-                                table.row(button.parents("tr")).remove().draw();
-                            }
-                        });
-                    }
-                });
             });
         })
     </script>

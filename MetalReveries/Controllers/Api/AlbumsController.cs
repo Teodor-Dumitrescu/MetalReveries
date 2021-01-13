@@ -70,6 +70,22 @@ namespace MetalReveries.Controllers.Api
 
             var albums = currentUser.Albums;
 
+            /*
+            var userAlbums = currentUser.Albums;
+            List<int> albumIds = new List<int>();
+
+            foreach (Album album in userAlbums)
+            {
+                albumIds.Add(album.Id);
+            }
+
+            var albums = _context.Albums
+                .Where(m => albumIds.Contains(m.Id))
+                .Include(m => m.Genre)
+                .Include(m => m.Band)
+                .ToList();
+            */
+
             foreach (Album album in albums)
             {
                 var genre = _context.Genres.SingleOrDefault(m => m.Id == album.GenreId);
