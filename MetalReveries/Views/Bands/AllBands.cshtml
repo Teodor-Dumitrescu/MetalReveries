@@ -37,7 +37,7 @@
                     {
                         data: "name",
                         render: function (data, type, band) {
-                            return "<a href='/bands/edit/" + band.id + "'>" + band.name + "</a>";
+                            return "<a href='/bands/edit/" + band.bandId + "'>" + band.name + "</a>";
                         }
                     },
                     {
@@ -50,7 +50,7 @@
                         data: "nrAlbumsOnSite"
                     },
                     {
-                        data: "id",
+                        data: "bandId",
                         render: function (data, type, band) {
                             return "<button class='btn-link js-delete' data-band-id=" + data + " data-band-count=" + band.nrAlbumsOnSite + ">Delete</button>";
                         }

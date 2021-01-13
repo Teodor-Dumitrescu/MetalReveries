@@ -5,11 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace MetalReveries.Controllers.Api
 {
     public class BandsController : ApiController
     {
+        
         private ApplicationDbContext _context;
 
         public BandsController()
@@ -20,7 +22,7 @@ namespace MetalReveries.Controllers.Api
         //Get /api/bands
         public IHttpActionResult GetBands()
         {
-            var bands = _context.Bands.ToList();
+            var bands = _context.Bands.Include(m => m.ContactInfo).ToList();
 
             return Ok(bands);
         }
@@ -28,7 +30,7 @@ namespace MetalReveries.Controllers.Api
         //Get /api/genres/1
         public IHttpActionResult GetBands(int id)
         {
-            var band = _context.Bands.SingleOrDefault(m => m.Id == id);
+            var band = _context.Bands.SingleOrDefault(m => m.BandId == id);
 
             if (band == null)
                 return NotFound();
@@ -46,7 +48,7 @@ namespace MetalReveries.Controllers.Api
             _context.Bands.Add(band);
             _context.SaveChanges();
 
-            return Created(new Uri(Request.RequestUri + "/" + band.Id), band);
+            return Created(new Uri(Request.RequestUri + "/" + band.BandId), band);
         }
 
         //PUT /api/bands/1
@@ -56,7 +58,7 @@ namespace MetalReveries.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var oldBand = _context.Bands.SingleOrDefault(m => m.Id == id);
+            var oldBand = _context.Bands.SingleOrDefault(m => m.BandId == id);
 
             if (oldBand == null)
                 return NotFound();
@@ -73,11 +75,17 @@ namespace MetalReveries.Controllers.Api
         //DELETE /api/bands/1
         public IHttpActionResult DeleteBand(int id)
         {
-            var band = _context.Bands.SingleOrDefault(m => m.Id == id);
+            var band = _context.Bands.SingleOrDefault(m => m.BandId == id);
 
             if (band == null)
                 return NotFound();
 
+            var contact = _context.ContactInfos.SingleOrDefault(m => m.ContactInfoId == band.ContactInfo.ContactInfoId);
+
+            if (contact == null)
+                return NotFound();
+
+            _context.ContactInfos.Remove(contact);
             _context.Bands.Remove(band);
             _context.SaveChanges();
 

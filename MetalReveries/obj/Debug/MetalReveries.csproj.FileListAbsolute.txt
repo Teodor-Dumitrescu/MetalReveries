@@ -119,3 +119,15 @@ C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalRever
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedBands.resources
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedAlbums.resources
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.ChangeDataTypeForAlbumsInStock.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedContactInfo.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedContactInfoIdInBand.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.ChangedRelationshipBandContactInfo.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AnotherTryOneToOne.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.SetIdentityInsertOn.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.anothertry.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.goback.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.maybenow.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.RenameIds.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedIdForBandANdContactInfo.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.DeleteAllTables.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddTablesAgain.resources

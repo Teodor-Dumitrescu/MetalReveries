@@ -11,6 +11,7 @@ namespace MetalReveries.Controllers.Api
 {
     public class AlbumsController : ApiController
     {
+        /*
         private ApplicationDbContext _context;
 
         public AlbumsController()
@@ -81,7 +82,7 @@ namespace MetalReveries.Controllers.Api
             if (albumOld == null)
                 return NotFound();
 
-            var oldBand = _context.Bands.SingleOrDefault(m => m.Id == albumOld.BandId);
+            var oldBand = _context.Bands.SingleOrDefault(m => m.BandId == albumOld.BandId);
             if (oldBand != null)
                 oldBand.NrAlbumsOnSite -= 1;
 
@@ -94,5 +95,6 @@ namespace MetalReveries.Controllers.Api
 
             return Ok();
         }
+        */
     }
 }

@@ -28,6 +28,8 @@ namespace MetalReveries.Models
 
         public DbSet<Album> Albums { get; set; }
 
+        public DbSet<ContactInfo> ContactInfos { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

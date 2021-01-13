@@ -11,6 +11,7 @@ namespace MetalReveries.Controllers
 {
     public class AlbumsController : Controller
     {
+        
         private ApplicationDbContext _context;
 
         public AlbumsController()
@@ -22,7 +23,7 @@ namespace MetalReveries.Controllers
         {
             _context.Dispose();
         }
-
+        
         // GET: Albums
         public ActionResult Index()
         {
@@ -75,7 +76,7 @@ namespace MetalReveries.Controllers
 
             if (album.Id == 0)
             {
-                var bandInDb = _context.Bands.SingleOrDefault(m => m.Id == album.BandId);
+                var bandInDb = _context.Bands.SingleOrDefault(m => m.BandId == album.BandId);
                 
                 if (bandInDb != null)
                     bandInDb.NrAlbumsOnSite += 1;
@@ -93,11 +94,11 @@ namespace MetalReveries.Controllers
                 
                 if (albumOld.BandId != album.BandId)
                 {
-                    var oldBand = _context.Bands.Single(m => m.Id == albumOld.BandId);
+                    var oldBand = _context.Bands.Single(m => m.BandId == albumOld.BandId);
 
                     oldBand.NrAlbumsOnSite -= 1;
 
-                    var newBand = _context.Bands.SingleOrDefault(m => m.Id == album.BandId);
+                    var newBand = _context.Bands.SingleOrDefault(m => m.BandId == album.BandId);
 
                     if (newBand != null)
                         newBand.NrAlbumsOnSite += 1;
@@ -143,5 +144,6 @@ namespace MetalReveries.Controllers
 
             return View("AlbumForm", viewModel);
         }
+        
     }
 }
