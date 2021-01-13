@@ -15,6 +15,9 @@ namespace MetalReveries
                         "~/Scripts/bootbox.js"
                         ));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -31,6 +34,10 @@ namespace MetalReveries
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+              "~/Content/themes/base/jquery.ui.datepicker.css",
+              "~/Content/themes/base/jquery.ui.theme.css"));
         }
     }
 }

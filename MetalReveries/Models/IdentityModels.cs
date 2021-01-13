@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -16,6 +18,11 @@ namespace MetalReveries.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public DateTime BirthDay { get; set; }
+
+        // many to many
+        public virtual ICollection<Album> Albums { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

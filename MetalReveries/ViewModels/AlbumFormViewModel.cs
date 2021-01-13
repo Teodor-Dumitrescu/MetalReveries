@@ -25,6 +25,7 @@ namespace MetalReveries.ViewModels
 
         [Required]
         [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime ReleaseDate { set; get; }
 
         [Required]
@@ -44,7 +45,7 @@ namespace MetalReveries.ViewModels
         {
             get
             {
-                return Id != 0 ? "Edit Movie" : "New Movie";
+                return Id != 0 ? "Edit Album" : "New Album";
             }
         }
 

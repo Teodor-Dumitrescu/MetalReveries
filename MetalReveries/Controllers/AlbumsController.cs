@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using MetalReveries.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MetalReveries.Controllers
 {
@@ -27,8 +29,50 @@ namespace MetalReveries.Controllers
         // GET: Albums
         public ActionResult Index()
         {
+            if (User?.Identity.IsAuthenticated == false)
+                return View("AllAlbumsNotAuth");
+            else
+            {
+                //if (User.IsInRole("admin"))
+                  //  return View("AllAlbums");
 
-            return View("AllAlbums");
+                return View("AllAlbumsUser");
+            }
+        }
+
+        public ActionResult AlbumsOwned()
+        {
+            return View("AlbumsOwned");
+        }
+
+        public ActionResult AlbumsOwnedOtherUser(string id)
+        {
+            ViewBag.UserId = id;
+            return View("AlbumsOwnedOtherUser");
+        }
+
+        public ActionResult Buy(int id)
+        {
+            var album = _context.Albums.SingleOrDefault(m => m.Id == id);
+
+            if (album == null)
+                return HttpNotFound();
+
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            ApplicationUser currentUser = UserManager.FindById(User.Identity.GetUserId());
+
+            var albumOld = currentUser.Albums.SingleOrDefault(m => m.Id == id);
+
+            if (albumOld != null)
+            {
+                return View("AlreadyBought");
+            }
+
+            currentUser.Albums.Add(album);
+
+            _context.SaveChanges();
+
+            return View("AllAlbumsUser");
         }
 
         public ActionResult Details(int id)

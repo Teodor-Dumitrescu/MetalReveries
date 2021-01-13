@@ -19,6 +19,7 @@ namespace MetalReveries.Models
         public Band Band { set; get; }
 
         [Display(Name = "Release Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime ReleaseDate { set; get; }
 
         [Range(0, 1000)]
@@ -32,5 +33,8 @@ namespace MetalReveries.Models
         public Genre Genre { set; get; }
 
         public float Price { set; get; }
+
+        // many to many
+        public virtual ICollection<ApplicationUser> Users { get; set; }
     }
 }

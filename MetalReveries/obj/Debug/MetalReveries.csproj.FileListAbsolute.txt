@@ -131,3 +131,4 @@ C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalRever
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddedIdForBandANdContactInfo.resources
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.DeleteAllTables.resources
 C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.AddTablesAgain.resources
+C:\Facultate5\DAW\MetalReveries\MetalReveries\MetalReveries\obj\Debug\MetalReveries.Migrations.ManyToManyUsersAlbums.resources

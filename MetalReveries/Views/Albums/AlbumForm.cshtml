@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.BandId)
-        @Html.DropDownListFor(m => m.BandId, new SelectList(Model.Bands, "Id", "Name"), "Select Band", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.BandId, new SelectList(Model.Bands, "BandId", "Name"), "Select Band", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.BandId)
     </div>
     <div class="form-group">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ReleaseDate)
-        @Html.TextBoxFor(m => m.ReleaseDate, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.ReleaseDate, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", placeholder = "MM/DD/YYYY", maxlength = "100" })
         @Html.ValidationMessageFor(m => m.ReleaseDate)
     </div>
     <div class="form-group">

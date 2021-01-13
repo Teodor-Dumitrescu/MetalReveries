@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/themes/base/css")
 
 </head>
 <body>
@@ -24,7 +25,8 @@
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
                     <li>@Html.ActionLink("Bands", "Index", "Bands")</li>
                     <li>@Html.ActionLink("Genres", "Index", "Genres")</li>
-                    <li>@Html.ActionLink("Customers", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Owned", "AlbumsOwned", "Albums")</li>
+                    <li>@Html.ActionLink("Users", "AllUsers", "Account")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,6 +42,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -10,23 +10,23 @@ namespace MetalReveries.Models
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var customer = (Customer)validationContext.ObjectInstance;
+            var user = (RegisterViewModel)validationContext.ObjectInstance;
 
-            if (customer.Birthdate == null)
-                return new ValidationResult("Birthdate is required.");
+            if (user.BirthDay == null)
+                return new ValidationResult("Date of Birth is required.");
 
-            var ageYears = DateTime.Today.Year - customer.Birthdate.Value.Year;
+            var ageYears = DateTime.Today.Year - user.BirthDay.Year;
 
-            var ageMonths = DateTime.Today.Month - customer.Birthdate.Value.Month;
+            var ageMonths = DateTime.Today.Month - user.BirthDay.Month;
 
-            var ageDays = DateTime.Today.Day - customer.Birthdate.Value.Day;
+            var ageDays = DateTime.Today.Day - user.BirthDay.Day;
 
             if (ageYears  >= 19 || 
                 (ageYears == 18 && ageMonths >= 0) ||
                 (ageYears == 18 && ageMonths == 0 && ageDays >= 0))
                 return ValidationResult.Success;
 
-            return new ValidationResult("Customer should be at least 18 years old");
+            return new ValidationResult("User should be at least 18 years old");
         }
     }
 }

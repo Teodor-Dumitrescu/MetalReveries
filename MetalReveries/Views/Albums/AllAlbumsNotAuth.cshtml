@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "AllAlbumsNotAUth";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Albums</h2>
+
+
+<table id="albums" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Album</th>
+            <th>Band</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>Price(RON)</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#albums").DataTable({
+                ajax: {
+                    url: "/api/albums",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        /*
+                        render: function (data, type, album) {
+                            return "<a href='/albums/edit/" + album.id + "'>" + album.name + "</a>";
+                        }*/
+                    },
+                    {
+                        data: "band.name"
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "releaseDate"
+                    },
+                    {
+                        data: "price"
+                    }
+                ]
+            });
+        })
+    </script>
+}

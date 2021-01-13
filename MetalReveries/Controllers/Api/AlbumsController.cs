@@ -6,12 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MetalReveries.Controllers.Api
 {
     public class AlbumsController : ApiController
     {
-        /*
         private ApplicationDbContext _context;
 
         public AlbumsController()
@@ -26,6 +27,60 @@ namespace MetalReveries.Controllers.Api
                 .Include(m => m.Genre)
                 .Include(m => m.Band)
                 .ToList();
+
+            return Ok(albums);
+        }
+
+        // Get /api/albums/get2
+        [HttpGet]
+        [Route("api/albums/get2")]
+        public IHttpActionResult GetAlbums2()
+        {
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            ApplicationUser currentUser = UserManager.FindById(User.Identity.GetUserId());
+
+            var albums = currentUser.Albums;
+
+            foreach (Album album in albums)
+            {
+                var genre = _context.Genres.SingleOrDefault(m => m.Id == album.GenreId);
+                var band = _context.Bands.SingleOrDefault(m => m.BandId == album.BandId);
+
+                if (genre != null)
+                    album.Genre = genre;
+
+                if (band != null)
+                    album.Band = band;
+            }
+
+            return Ok(albums);
+        }
+
+        // Get /api/albums/get2
+        [HttpGet]
+        [Route("api/albums/get3/{id}")]
+        public IHttpActionResult GetAlbums3(string id)
+        {
+            //return BadRequest();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            ApplicationUser currentUser = UserManager.FindById(id);
+
+            if (currentUser == null)
+                return BadRequest();
+
+            var albums = currentUser.Albums;
+
+            foreach (Album album in albums)
+            {
+                var genre = _context.Genres.SingleOrDefault(m => m.Id == album.GenreId);
+                var band = _context.Bands.SingleOrDefault(m => m.BandId == album.BandId);
+
+                if (genre != null)
+                    album.Genre = genre;
+
+                if (band != null)
+                    album.Band = band;
+            }
 
             return Ok(albums);
         }
@@ -95,6 +150,5 @@ namespace MetalReveries.Controllers.Api
 
             return Ok();
         }
-        */
     }
 }
