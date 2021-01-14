@@ -39,6 +39,7 @@ namespace MetalReveries.ViewModels
 
         [Required]
         [Display(Name="Price(RON)")]
+        [Range(1, 1000)]
         public float Price { set; get; }
 
         public string Title

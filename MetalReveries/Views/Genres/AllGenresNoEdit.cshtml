@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Genres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Genres</h2>
+
+<table id="genres" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Genre</th>
+            <th>Album Count</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#genres").DataTable({
+                ajax: {
+                    url: "/api/genres",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "albumCount"
+                    }
+                ]
+            });
+        })
+    </script>
+}

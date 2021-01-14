@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>MetalReveries</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/themes/base/css")
@@ -25,8 +25,14 @@
                     <li>@Html.ActionLink("Albums", "Index", "Albums")</li>
                     <li>@Html.ActionLink("Bands", "Index", "Bands")</li>
                     <li>@Html.ActionLink("Genres", "Index", "Genres")</li>
-                    <li>@Html.ActionLink("Owned", "AlbumsOwned", "Albums")</li>
-                    <li>@Html.ActionLink("Users", "AllUsers", "Account")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Owned", "AlbumsOwned", "Albums")</li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Users", "AllUsers", "Account")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -36,7 +42,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - MetalReveries</p>
         </footer>
     </div>
 

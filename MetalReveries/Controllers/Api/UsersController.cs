@@ -21,6 +21,7 @@ namespace MetalReveries.Controllers.Api
         }
 
         [Route("getUsers")]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult getUsers()
         {
             var users = _context.Users.Select(u => new { Id = u.Id, Email = u.Email, AlbumsBought = u.Albums.Count() });

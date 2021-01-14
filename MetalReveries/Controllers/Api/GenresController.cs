@@ -74,6 +74,8 @@ namespace MetalReveries.Controllers.Api
         }
 
         //DELETE /api/customers/1
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteGenre(int id)
         {
             var genre = _context.Genres.SingleOrDefault(g => g.Id == id);

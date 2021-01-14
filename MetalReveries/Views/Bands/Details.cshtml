@@ -1,0 +1,34 @@
+﻿@model MetalReveries.Models.Band
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+<br />
+
+<div class="form-group">
+    @Html.Label("Name: ")
+    @Html.DisplayTextFor(m => m.Name)
+</div>
+<div class="form-group">
+    @Html.Label("Country: ")
+    @Html.DisplayTextFor(m => m.Country)
+</div>
+<div class="form-group">
+    @Html.Label("Year Founded: ")
+    @Html.DisplayTextFor(m => m.YearFounded)
+</div>
+<div class="form-group">
+    @Html.Label("Phone Number: ")
+    @Html.DisplayTextFor(m => m.ContactInfo.PhoneNumber)
+</div>
+<div class="form-group">
+    @Html.Label("Email: ")
+    @Html.DisplayTextFor(m => m.ContactInfo.Email)
+</div>
+<div class="form-group">
+    @Html.Label("Facebook: ")
+    @Html.DisplayTextFor(m => m.ContactInfo.Facebook)
+</div>
+

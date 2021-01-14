@@ -14,6 +14,7 @@ namespace MetalReveries.ViewModels
         public string Name { get; set; }
 
         [Required]
+        [StringLength(30)]
         public string Country { get; set; }
 
         [Required]
@@ -30,6 +31,7 @@ namespace MetalReveries.ViewModels
         [EmailAddress]
         public string Email { get; set; }
 
+        [StringLength(100)]
         public string Facebook { get; set; }
 
         public BandContactViewModel()

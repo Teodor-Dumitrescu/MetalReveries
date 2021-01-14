@@ -27,7 +27,7 @@ namespace MetalReveries.Controllers.Api
             return Ok(bands);
         }
 
-        //Get /api/genres/1
+        //Get /api/bands/1
         public IHttpActionResult GetBands(int id)
         {
             var band = _context.Bands.SingleOrDefault(m => m.BandId == id);
@@ -73,6 +73,8 @@ namespace MetalReveries.Controllers.Api
         }
 
         //DELETE /api/bands/1
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteBand(int id)
         {
             var band = _context.Bands.SingleOrDefault(m => m.BandId == id);

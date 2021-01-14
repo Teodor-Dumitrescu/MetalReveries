@@ -8,6 +8,7 @@ using MetalReveries.ViewModels;
 
 namespace MetalReveries.Controllers
 {
+    [Authorize]
     public class BandsController : Controller
     {
         
@@ -24,11 +25,27 @@ namespace MetalReveries.Controllers
         }
 
         // GET: Bands
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View("AllBands");
+            if(User.IsInRole("Admin"))
+                return View("AllBands");
+
+            return View("AllBandsNoEdit");
         }
 
+        [AllowAnonymous]
+        public ActionResult Details(int id)
+        {
+            var band = _context.Bands.SingleOrDefault(m => m.BandId == id);
+
+            if (band == null)
+                return HttpNotFound();
+
+            return View(band);
+        }
+
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             // var viewModel = new BandFormViewModel();
@@ -38,6 +55,7 @@ namespace MetalReveries.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult New(BandContactViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -72,6 +90,7 @@ namespace MetalReveries.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Save(BandFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -119,6 +138,7 @@ namespace MetalReveries.Controllers
             return RedirectToAction("Index", "Bands");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var bandOld = _context.Bands.SingleOrDefault(m => m.BandId == id);

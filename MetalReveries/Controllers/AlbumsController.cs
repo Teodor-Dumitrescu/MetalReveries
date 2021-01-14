@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MetalReveries.Controllers
 {
+    [Authorize]
     public class AlbumsController : Controller
     {
         
@@ -27,6 +28,7 @@ namespace MetalReveries.Controllers
         }
         
         // GET: Albums
+        [AllowAnonymous]
         public ActionResult Index()
         {
             if (User?.Identity.IsAuthenticated == false)
@@ -45,6 +47,7 @@ namespace MetalReveries.Controllers
             return View("AlbumsOwned");
         }
 
+        [Authorize(Roles ="Admin")]
         public ActionResult AlbumsOwnedOtherUser(string id)
         {
             ViewBag.UserId = id;
@@ -68,6 +71,9 @@ namespace MetalReveries.Controllers
                 return View("AlreadyBought");
             }
 
+            if (album.NumberInStock == 0)
+                return View("OutOfStock");
+
             currentUser.Albums.Add(album);
 
             _context.SaveChanges();
@@ -88,6 +94,7 @@ namespace MetalReveries.Controllers
             return View(album);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -105,6 +112,7 @@ namespace MetalReveries.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Save(Album album)
         {
             if (!ModelState.IsValid)
@@ -173,6 +181,7 @@ namespace MetalReveries.Controllers
             return RedirectToAction("Index", "Albums");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var album = _context.Albums.SingleOrDefault(m => m.Id == id);

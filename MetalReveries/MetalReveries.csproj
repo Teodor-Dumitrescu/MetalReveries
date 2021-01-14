@@ -187,7 +187,6 @@
     <Compile Include="Controllers\Api\GenresController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\BandsController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -631,6 +630,10 @@
     <Content Include="Views\Albums\AllAlbumsNotAuth.cshtml" />
     <Content Include="Views\Account\AllUsers.cshtml" />
     <Content Include="Views\Albums\AlbumsOwnedOtherUser.cshtml" />
+    <Content Include="Views\Bands\AllBandsNoEdit.cshtml" />
+    <Content Include="Views\Genres\AllGenresNoEdit.cshtml" />
+    <Content Include="Views\Bands\Details.cshtml" />
+    <Content Include="Views\Albums\OutOfStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

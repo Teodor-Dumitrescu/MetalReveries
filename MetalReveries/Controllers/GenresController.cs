@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace MetalReveries.Controllers
 {
+    [Authorize]
     public class GenresController : Controller
     {
 
@@ -24,11 +25,16 @@ namespace MetalReveries.Controllers
         }
 
         // GET: Genres
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View("AllGenres");
+            if (User.IsInRole("Admin"))
+                return View("AllGenres");
+
+            return View("AllGenresNoEdit");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             var viewModel = new GenreFormViewModel();
@@ -38,6 +44,7 @@ namespace MetalReveries.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Save(Genre genre)
         {
             if (!ModelState.IsValid)
@@ -66,6 +73,7 @@ namespace MetalReveries.Controllers
             return RedirectToAction("Index", "Genres");
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var genre = _context.Genres.SingleOrDefault(m => m.Id == id);

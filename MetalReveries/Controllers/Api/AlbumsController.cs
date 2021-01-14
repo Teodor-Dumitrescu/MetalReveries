@@ -70,22 +70,6 @@ namespace MetalReveries.Controllers.Api
 
             var albums = currentUser.Albums;
 
-            /*
-            var userAlbums = currentUser.Albums;
-            List<int> albumIds = new List<int>();
-
-            foreach (Album album in userAlbums)
-            {
-                albumIds.Add(album.Id);
-            }
-
-            var albums = _context.Albums
-                .Where(m => albumIds.Contains(m.Id))
-                .Include(m => m.Genre)
-                .Include(m => m.Band)
-                .ToList();
-            */
-
             foreach (Album album in albums)
             {
                 var genre = _context.Genres.SingleOrDefault(m => m.Id == album.GenreId);
@@ -146,6 +130,7 @@ namespace MetalReveries.Controllers.Api
 
         // DELETE /api/albums/1
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteAlbum(int id)
         {
             var albumOld = _context.Albums.SingleOrDefault(m => m.Id == id);
@@ -160,6 +145,11 @@ namespace MetalReveries.Controllers.Api
             var oldGenre = _context.Genres.SingleOrDefault(m => m.Id == albumOld.GenreId);
             if (oldGenre != null)
                 oldGenre.AlbumCount -= 1;
+
+            foreach(var user in albumOld.Users.ToList())
+            {
+                user.Albums.Remove(albumOld);
+            }
 
             _context.Albums.Remove(albumOld);
             _context.SaveChanges();

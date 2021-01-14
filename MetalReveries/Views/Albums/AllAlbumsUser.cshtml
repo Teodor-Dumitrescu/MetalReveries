@@ -27,8 +27,7 @@
         $(document).ready(function () {
             $("#albums").DataTable({
                 ajax: {
-                    //url: "/api/albums",
-                    url: "/api/albums/get3/a978600c-919b-48ae-9de1-cd245a9a1328",
+                    url: "/api/albums",
                     dataSrc: ""
                 },
                 columns: [
@@ -40,7 +39,10 @@
                         }*/
                     },
                     {
-                        data: "band.name"
+                        data: "band.name",
+                        render: function (data, type, album) {
+                            return "<a href='/bands/details/" + album.band.bandId + "'>" + data + "</a>";
+                        }
                     },
                     {
                         data: "genre.name"
